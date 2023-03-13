@@ -1,0 +1,70 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SmartShop" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/white</item>
+        <item name="background">@color/black</item>
+        <item name="tint">@color/white</item>
+    </style>
+    <style name="screen">
+        <item name="android:background">#1C1C1C</item>
+    </style>
+    <style name="screen1">
+        <item name="android:background">#0E0E0E</item>
+    </style>
+    <style name="screen2">
+        <item name="android:background">#353535</item>
+    </style>
+    <style name="screen3">
+        <item name="android:background">#2C2C2C</item>
+    </style>
+    <style name="circle">
+        <item name="civ_circle_background_color">#fff</item>
+        <item name="civ_border_color">#424242</item>
+    </style>
+    <style name="category">
+        <item name="android:background">@drawable/circle_chape_dark</item>
+    </style>
+    <style name="cardView">
+        <item name="android:backgroundTint">@color/black</item>
+    </style>
+    <style name="OutlinedBox" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="productTextName">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="productTextBoard">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="productTextPrice">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/white</item>
+</style>
+    <style name="imgP">
+        <item name="tint">@color/black</item>
+    </style>
+    <style name="favorite">
+        <item name="android:backgroundTint">#373737</item>
+    </style>
+
+</resources>

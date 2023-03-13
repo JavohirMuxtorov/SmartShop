@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/flCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/category"
+        android:padding="8dp">
+        <ImageView
+            android:id="@+id/imgCategory"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/favorite"/>
+    </FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="10sp"
+        android:id="@+id/tvCategory"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="Kompyuter va sichqonchalar"/>
+
+</LinearLayout>
