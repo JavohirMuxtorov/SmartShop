@@ -10,13 +10,11 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartshop.MainViewModel
-import com.example.smartshop.R
 import com.example.smartshop.databinding.FragmentHomeBinding
-import com.example.smartshop.model.CategoryModel
-import com.example.smartshop.utils.Constants
 import com.example.smartshop.view.CategoryAdapter
+import com.example.smartshop.view.TopProductAdapter
 
 class HomeFragment : Fragment() {
 lateinit var viewModel: MainViewModel
@@ -35,26 +33,31 @@ lateinit var binding: FragmentHomeBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerCategory.layoutManager = GridLayoutManager(requireActivity(),4)
+        binding.recyclerCategory.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL,false)
+        binding.recyclerProduct.layoutManager = GridLayoutManager(requireActivity(),2)
+        binding.swipe.setOnRefreshListener {
+            loadData()
+        }
+        viewModel.progress.observe(requireActivity(), Observer {
+            binding.swipe.isRefreshing = it
+        })
         viewModel.error.observe(requireActivity(), Observer {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
-        })
-        viewModel.offersData.observe(requireActivity(), Observer {
-            binding.carouselView.setImageListener { position, imageView ->
-                Glide.with(imageView).load(Constants.HOST_IMAGE+it[position].image).into(imageView)
-            }
-            binding.carouselView.pageCount = it.count()
         })
         viewModel.categoriesData.observe(requireActivity(), Observer {
             binding.recyclerCategory.adapter = CategoryAdapter(it)
         })
+        viewModel.topProductData.observe(requireActivity(), Observer {
+            binding.recyclerProduct.adapter = TopProductAdapter(it)
+        })
+
 
         loadData()
     }
 
     fun loadData() {
-        viewModel.getOffers()
         viewModel.getCategories()
+        viewModel.getTopProducts()
     }
 
     companion object {
@@ -62,4 +65,5 @@ lateinit var binding: FragmentHomeBinding
         @JvmStatic
         fun newInstance() = HomeFragment()
     }
+
 }

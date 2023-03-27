@@ -1,19 +1,24 @@
 package com.example.smartshop.model
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.RequiresApi
+import androidx.core.os.ParcelCompat.readArrayList
 
 data class UserModel (
     val id: String ="",
     val name: String = "",
     val email: String = "",
-    val image: String ="",
+    val img: String="",
+    var startPassword: String ="false"
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readString() !!,
     ) {
     }
 
@@ -23,7 +28,8 @@ data class UserModel (
         this.writeString(id)
         this.writeString(name)
         this.writeString(email)
-        this.writeString(image)
+        this.writeString(img)
+        this.writeString(startPassword)
     }
 
     companion object CREATOR : Parcelable.Creator<UserModel> {

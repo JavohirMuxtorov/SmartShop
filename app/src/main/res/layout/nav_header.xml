@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="16dp"
             android:gravity="center_vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -47,6 +48,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="email@gmail.com"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="normal|italic" />
@@ -219,29 +222,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-        <LinearLayout
-            android:id="@+id/logOutApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp"
-            android:padding="8dp">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_baseline_logout_24"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="normal"
-                android:textSize="16sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/log_out"
-                android:id="@+id/tvlogOut"/>
-
-        </LinearLayout>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="normal|italic"
+        android:textSize="16sp"
+        android:text="v1.0"
+        style="@style/tvVersion"
+        android:gravity="center"
+        android:layout_marginBottom="26dp"/>
 
 </LinearLayout>

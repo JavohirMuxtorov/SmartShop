@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetDialog1"
+    android:background='@drawable/delete_dialog_shape'
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/delete_dialog_shape"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            style="@style/productTextName"
+            android:gravity="center"
+            android:text="Rostdan ham parolni o'chirmoqchimisiz?"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            app:cardBackgroundColor="#B8B8B8"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="24dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:id="@+id/noDelete">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="@string/cancel"/>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            app:cardBackgroundColor="#B8B8B8"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="24dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:id="@+id/okDelete">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/blue"
+                android:gravity="center"
+                android:text="@string/ok"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>
+</FrameLayout>

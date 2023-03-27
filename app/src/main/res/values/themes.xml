@@ -16,6 +16,12 @@
         <item name="background">@color/white</item>
         <item name="tint">@color/black</item>
     </style>
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
     <style name="screen">
         <item name="android:background">@color/white</item>
     </style>
@@ -44,6 +50,9 @@
     <style name="cardView">
         <item name="android:backgroundTint">@color/white</item>
     </style>
+    <style name="productBackground">
+        <item name="android:background">@drawable/product_light_background_shape</item>
+    </style>
 
     <style name="OutlinedBox" parent="Base.Widget.MaterialComponents.TextInputLayout">
         <item name="materialThemeOverlay">
@@ -55,6 +64,9 @@
     <item name="android:textStyle">bold</item>
     <item name="android:textColor">@color/black</item>
 </style>
+    <style name="tvVersion">
+        <item name="android:textColor">#C1C1C1</item>
+    </style>
 <style name="productTextBoard">
     <item name="android:textStyle">normal</item>
     <item name="android:textColor">@color/black</item>
@@ -68,5 +80,31 @@
 </style>
     <style name="imgP">
         <item name="tint">@color/white</item>
+    </style>
+    <style name="backgroundScreen">
+        <item name="android:background">@drawable/backgroundlight</item>
+    </style>
+    <style name="backgroundScreen2">
+        <item name="android:background">@drawable/backgroundlight2</item>
+    </style>
+    <style name="backText">
+        <item name="android:textColor">#00B807</item>
+    </style>
+    <style name="backIcon">
+        <item name="tint">#00B807</item>
+    </style>
+
+    <style name="logOutIcon">
+        <item name="tint">#F44336</item>
+    </style>
+    <style name="logOutText">
+        <item name="android:textColor">#F44336</item>
+    </style>
+    <style name="tvBack">
+        <item name="android:textColor">#009688</item>
+    </style>
+    <style name="tvDialog">
+        <item name="android:textStyle">normal|italic</item>
+        <item name="android:textColor">#2196F3</item>
     </style>
 </resources>

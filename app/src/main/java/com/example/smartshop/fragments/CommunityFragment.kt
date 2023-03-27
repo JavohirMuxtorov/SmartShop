@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.smartshop.R
 
-class MapFragment : Fragment() {
+class CommunityFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,6 +19,6 @@ class MapFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = MapFragment()
+        fun newInstance() = CommunityFragment()
     }
 }

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SettingsActivity"
+    tools:ignore="MissingConstraints">
+
+    <LinearLayout
+        android:id="@+id/ll_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/llBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/backIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+            <TextView
+                style="@style/backText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/llLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/logOutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LogOut"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <ImageView
+                style="@style/logOutIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ic_baseline_logout_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="276dp">
+
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:tint="@null" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="#03A9F4"
+            app:cardCornerRadius="25dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                app:tint="@color/white" />
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvEmail"
+                style="@style/productTextName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="email@gmail.com"
+                android:textSize="16sp" />
+
+            <View
+                style="@style/screen3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/productTextName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Name"
+                android:textSize="16sp" />
+
+            <View
+                style="@style/screen3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llOpenPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvOpenPassword"
+                style="@style/productTextName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:text="@string/kirish_paroli_off" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

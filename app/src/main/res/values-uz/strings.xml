@@ -15,4 +15,21 @@
     <string name="about">About</string>
     <string name="settings">sozlamalar</string>
     <string name="lang">Tilni tanlang</string>
+    <string name="log_out">Log Out</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="name_about">Choose a smart shop username. It can be your name or nickname\n\nNote! When you order a product, our operators will receive an order on your behalf and you will be served under that name</string>
+    <string name="do_you_want_to_save_this_picture_to_your_profile">Do you want to save this picture to your profile?</string>
+    <string name="ok">Ok</string>
+    <string name="no">No</string>
+    <string name="tv_open_password">Iltimos parolingizni kiriting</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="screen_password_settings">Screen password settings</string>
+    <string name="yangi_parol_o_ylab_toping">Yangi Parol o\'ylab toping</string>
+    <string name="parolingizni_tasdiqlang">Parolingizni tasdiqlang!</string>
+    <string name="kirish_paroli_off">Kirish paroli(o\'chiq)</string>
+    <string name="kirish_paroli_on">Kirish paroli(yoniq)</string>
 </resources>

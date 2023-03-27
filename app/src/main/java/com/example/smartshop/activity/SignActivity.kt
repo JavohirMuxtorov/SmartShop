@@ -2,10 +2,12 @@ package com.example.smartshop.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.smartshop.MainActivity
 import com.example.smartshop.databinding.ActivitySignBinding
 import com.example.smartshop.firebase.Firebase
@@ -14,6 +16,7 @@ import com.example.smartshop.utils.LocaleManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class SignActivity : BaseActivity() {
     lateinit var binding: ActivitySignBinding
     override fun onCreate(savedInstanceState: Bundle?) {

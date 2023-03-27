@@ -5,116 +5,160 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
-    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/ll_searchView"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            style="@style/backgroundScreen"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_baseline_arrow_back_24"
-                    android:layout_marginLeft="8dp"
-                    app:tint="@color/secondary_text_color" />
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchView"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@android:color/transparent"
-                    app:queryHint="Search" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        android:layout_marginLeft="8dp"
+                        app:tint="@color/secondary_text_color" />
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:iconifiedByDefault="false"
+                        android:searchIcon="@null"
+                        android:queryBackground="@android:color/transparent"
+                        android:queryHint="Search" />
 
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/secondary_text_color"/>
             </LinearLayout>
-            <View
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/secondary_text_color"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:gravity="center_vertical"
-            style="@style/screen1"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <ImageView
-                android:id="@+id/menu"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/menu" />
-
-            <ImageView
-                android:id="@+id/no"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/ic_baseline_search_24"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/home"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/ic_baseline_search_24" />
-
-            <ImageView
-                android:id="@+id/notification"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/ic_baseline_notifications_24" />
-
+                android:id="@+id/searchHistory"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/searchProduct"/>
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/flContainer"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            style="@style/screen"
-            android:layout_weight="1" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:background="#00000000"
+                android:id="@+id/ll">
+
+                <FrameLayout
+                    android:id="@+id/flContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                </FrameLayout>
 
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:id="@+id/bottom_navigation_view"
-            android:layout_gravity="bottom"
-            app:labelVisibilityMode="unlabeled"
-            style="@style/screen1"
-            android:layout_height="wrap_content"
-            app:menu="@menu/bottom_navigation_menu"/>
-    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center_vertical"
+                    android:background="#00FFFFFF"
+                    android:layout_gravity="top"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/menu"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/menu" />
+
+                    <ImageView
+                        android:id="@+id/no"
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/ic_baseline_search_24"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:id="@+id/llLock"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <ImageView
+                            android:id="@+id/imgLock"
+                            android:visibility="gone"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/lock"
+                            android:layout_marginRight="8dp"/>
+                        <TextView
+                            android:id="@+id/tvTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/home"
+                            android:layout_gravity="center"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/search"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_baseline_search_24" />
+
+                    <ImageView
+                        android:id="@+id/notification"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_baseline_notifications_24" />
+
+                </LinearLayout>
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:layout_width="match_parent"
+                    android:id="@+id/bottom_navigation_view"
+                    app:labelVisibilityMode="unlabeled"
+                    android:elevation="0dp"
+                    app:elevation="0dp"
+                    android:layout_gravity="bottom"
+                    android:background="#00000000"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/bottom_navigation_menu"/>
+            </FrameLayout>
 <com.google.android.material.navigation.NavigationView
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
@@ -124,6 +168,6 @@
     android:background="@color/white">
     <include
         android:id="@+id/navLayout"
-        layout="@layout/nav_header"/>
+        layout="@layout/nav_header" />
 </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

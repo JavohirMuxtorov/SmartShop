@@ -2,10 +2,7 @@ package com.example.smartshop.api.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.smartshop.api.NetworkManager
-import com.example.smartshop.model.BaseResponse
-import com.example.smartshop.model.CategoryModel
-import com.example.smartshop.model.OffersModel
-import com.example.smartshop.model.ProductModel
+import com.example.smartshop.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -37,13 +34,39 @@ class ShopRepository {
         )
     }
 
-    fun getCategories(error: MutableLiveData<String>, success: MutableLiveData<List<CategoryModel>>){
+    fun getCategories(error: MutableLiveData<String>, success: MutableLiveData<List<CategoryModel>>,progress: MutableLiveData<Boolean>){
+        progress.value = true
         compositeDisposable.add(
             NetworkManager.getApiService().getCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<BaseResponse<List<CategoryModel>>>(){
                     override fun onNext(t: BaseResponse<List<CategoryModel>>) {
+                        progress.value = false
+                        if (t.success){
+                            success.value = t.data
+                        }else{
+                            error.value = t.message
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        progress.value = false
+                        error.value = e.localizedMessage
+                    }
+
+                    override fun onComplete() {
+                    }
+                })
+        )
+    }
+    fun getTopProducts(error: MutableLiveData<String>, success: MutableLiveData<List<TopProductModel>>){
+        compositeDisposable.add(
+            NetworkManager.getApiService().getTopProducts()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<TopProductModel>>>(){
+                    override fun onNext(t: BaseResponse<List<TopProductModel>>) {
                         if (t.success){
                             success.value = t.data
                         }else{
@@ -60,13 +83,13 @@ class ShopRepository {
                 })
         )
     }
-    fun getTopProducts(error: MutableLiveData<String>, success: MutableLiveData<List<ProductModel>>){
+    fun getHistoryProducts(error: MutableLiveData<String>, success: MutableLiveData<List<TopProductModel>>){
         compositeDisposable.add(
             NetworkManager.getApiService().getTopProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>(){
-                    override fun onNext(t: BaseResponse<List<ProductModel>>) {
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<TopProductModel>>>(){
+                    override fun onNext(t: BaseResponse<List<TopProductModel>>) {
                         if (t.success){
                             success.value = t.data
                         }else{

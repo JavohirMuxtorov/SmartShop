@@ -2,10 +2,12 @@ package com.example.smartshop.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.smartshop.MainActivity
 import com.example.smartshop.databinding.ActivityLogInBinding
 import com.example.smartshop.firebase.Firebase
@@ -13,6 +15,7 @@ import com.example.smartshop.model.UserModel
 import com.example.smartshop.utils.LocaleManager
 import com.google.firebase.auth.FirebaseAuth
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class LogInActivity : BaseActivity() {
     lateinit var binding: ActivityLogInBinding
     lateinit var auth: FirebaseAuth
@@ -55,7 +58,7 @@ fun logInSuccess(user: UserModel){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Firebase().logIn(this@LogInActivity)
+                        Firebase().userDetail(this@LogInActivity)
                     } else {
                         Toast.makeText(
                             this@LogInActivity,

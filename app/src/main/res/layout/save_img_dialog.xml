@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    style="@style/productTextName"
+    android:textSize="16sp"
+    android:text="@string/do_you_want_to_save_this_picture_to_your_profile"
+    android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|end"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:id="@+id/tvNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tvDialog"
+            android:textSize="16sp"
+            android:text="@string/no"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/tvOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tvDialog"
+            android:textSize="16sp"
+            android:text="@string/ok"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

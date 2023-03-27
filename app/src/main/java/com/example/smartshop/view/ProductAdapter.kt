@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.smartshop.R
 import com.example.smartshop.databinding.ProductItemLayoutBinding
 import com.example.smartshop.fragments.ProductDetailFragment
 import com.example.smartshop.model.ProductModel
@@ -16,16 +17,18 @@ import com.example.smartshop.utils.Constants
 
 class ProductAdapter(val items: List<ProductModel>, val onItemClickListener: OnItemClickListener): RecyclerView.Adapter<ProductAdapter.ItemHolder>() {
     inner class ItemHolder(val binding: ProductItemLayoutBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
-        init {
-            itemView.setOnClickListener(this)
+        fun bind(item: ProductModel){
+            itemView.setOnClickListener {
+                onItemClickListener.onItemClick(item)
+            }
         }
         override fun onClick(v: View?) {
-            onItemClickListener.onItemClick(adapterPosition)
+            onItemClickListener.onItemClick(items[adapterPosition])
         }
 
     }
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(item: ProductModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
@@ -34,14 +37,7 @@ class ProductAdapter(val items: List<ProductModel>, val onItemClickListener: OnI
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = items[position]
-
-//        val fragment = ProductDetailFragment.newInstance()
-//
-//        holder.itemView.setOnClickListener {
-//            val intent =
-//            intent.putExtra("pD", item)
-////            holder.itemView.context.startActivity(intent)
-//        }
+        holder.bind(item)
         holder.binding.tvPBCName.text = item.name
         holder.binding.tvPBCComment.text = item.name
         holder.binding.tvPBCPrice.text = item.price
