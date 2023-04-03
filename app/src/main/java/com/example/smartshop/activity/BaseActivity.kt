@@ -1,10 +1,15 @@
 package com.example.smartshop.activity
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.smartshop.R
@@ -24,7 +29,7 @@ open class BaseActivity : AppCompatActivity() {
     fun showProgressDialog() {
         mProgressDialog = Dialog(this)
         mProgressDialog.setContentView(R.layout.dialog_progress)
-        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCancelable(true)
         mProgressDialog.show()
     }
     fun hideProgressDialog(){
@@ -43,6 +48,26 @@ open class BaseActivity : AppCompatActivity() {
         Handler().postDelayed({
             doubleBackToExitPressedOnce = false
         }, 2000)
+    }
+    private fun showRationalDialogForPermissions() {
+        AlertDialog.Builder(this)
+            .setMessage("It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings")
+            .setPositiveButton(
+                "GO TO SETTINGS"
+            ) { _, _ ->
+                try {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException) {
+                    e.printStackTrace()
+                }
+            }
+            .setNegativeButton("Cancel") { dialog,
+                                           _ ->
+                dialog.dismiss()
+            }.show()
     }
     fun showErrorSnackBar(message: String){
         val snackBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)

@@ -8,6 +8,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -71,25 +73,45 @@ class SettingsActivity : BaseActivity() {
             }
         }
         binding.addImage.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                Constants.showImageChooser(this)
-                Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show()
-            } else {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    Constants.READ_STORAGE_PERMISSION_CODE
-                )
-
-                Toast.makeText(this, "no", Toast.LENGTH_SHORT).show()
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+                VersionM()
+            }else if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R){
+                VersionR()
             }
         }
     }
-
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun VersionR(){
+        if (Environment.isExternalStorageManager()) {
+            Constants.showImageChooser(this)
+        } else {
+            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
+                data = Uri.parse("package:" + applicationContext.packageName)
+            }
+            startActivityForResult(intent, Constants.READ_STORAGE_PERMISSION_CODE)
+        }
+    }
+private fun VersionM(){
+    if (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    ) {
+        Constants.showImageChooser(this)
+    }
+    else {
+        val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val grant = ContextCompat.checkSelfPermission(this, permission)
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            val permissionList = arrayOf(permission)
+            ActivityCompat.requestPermissions(
+                this,
+                permissionList,
+                Constants.READ_STORAGE_PERMISSION_CODE
+            )
+        }
+    }
+}
     override fun onDestroy() {
         super.onDestroy()
 
@@ -173,7 +195,18 @@ class SettingsActivity : BaseActivity() {
                 e.printStackTrace()
             }
         }
-
+        if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                Environment.isExternalStorageManager()) {
+                Constants.showImageChooser(this)
+            } else {
+                Toast.makeText(
+                    this,
+                    "Oops, you just denied the permission for storage. You can also allow it from settings",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     private fun updateUserProfileData() {

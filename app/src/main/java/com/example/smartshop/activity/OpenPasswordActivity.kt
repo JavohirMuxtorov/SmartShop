@@ -15,6 +15,7 @@ import com.hanks.passcodeview.PasscodeView
 import com.hanks.passcodeview.PasscodeView.PasscodeViewListener
 import java.io.*
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class OpenPasswordActivity : AppCompatActivity() {
     lateinit var binding: ActivityOpenPasswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,15 +36,6 @@ class OpenPasswordActivity : AppCompatActivity() {
             }
 
         }
-//            .setLocalPasscode("${passcode}").listener = object : PasscodeView.PasscodeViewListener{
-//            override fun onFail() {
-//
-//            }
-//
-//            override fun onSuccess(number: String?) {
-//                startA()
-//            }
-//        }
     }
     fun startA(){
         startActivity(Intent(this, MainActivity::class.java))

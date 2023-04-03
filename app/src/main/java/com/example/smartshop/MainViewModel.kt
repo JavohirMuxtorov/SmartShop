@@ -3,10 +3,7 @@ package com.example.smartshop
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.smartshop.api.repository.ShopRepository
-import com.example.smartshop.model.CategoryModel
-import com.example.smartshop.model.OffersModel
-import com.example.smartshop.model.ProductModel
-import com.example.smartshop.model.TopProductModel
+import com.example.smartshop.model.*
 
 class MainViewModel: ViewModel() {
     val repository = ShopRepository()
@@ -34,5 +31,8 @@ class MainViewModel: ViewModel() {
 
     fun getProductsByCategory(id: Int) {
         repository.getProductsByCategory(id, error, productData)
+    }
+    fun getProductsByIds(ids: List<Int>) {
+        repository.getProductsByIdsTop(ids, error, progress, topProductData)
     }
 }

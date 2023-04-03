@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
     tools:context=".MainActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/languagetv"
+        android:text="@string/en_uz_ru"
+        android:visibility="gone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nightTv"
+        android:visibility="gone"
+        android:text="false"/>
 
         <LinearLayout
             android:id="@+id/ll_searchView"

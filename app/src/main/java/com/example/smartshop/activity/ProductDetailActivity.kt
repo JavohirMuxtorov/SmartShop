@@ -2,14 +2,15 @@ package com.example.smartshop.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.view.View
 import com.bumptech.glide.Glide
+import com.example.smartshop.R
 import com.example.smartshop.databinding.ActivityProductDetailBinding
 import com.example.smartshop.model.ProductDetailModel
-import com.example.smartshop.model.SearchModel
 import com.example.smartshop.model.TopProductModel
+import com.example.smartshop.utils.PrefUtils
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrInterface
 
@@ -324,7 +325,24 @@ class ProductDetailActivity : AppCompatActivity() {
                 .load("https://firebasestorage.googleapis.com/v0/b/smart-shop-77630.appspot.com/o/${items.image[position]}")
                 .into(imageView)
         }
+        binding.addToCart.setOnClickListener {
+            PrefUtils.setCart(item)
+            binding.addToCart.visibility = View.GONE
+        }
+        binding.imgFavorite.setOnClickListener {
+            PrefUtils.setFavorite(item)
 
+            if (PrefUtils.checkFavorites(item)){
+                binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }else{
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
+            }
+        }
+        if (PrefUtils.checkFavorites(item)){
+            binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            binding.imgFavorite.setImageResource(R.drawable.favorite)
+        }
 
 
     }

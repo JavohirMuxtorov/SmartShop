@@ -9,12 +9,12 @@ import com.example.smartshop.activity.HistoryProductDetailActivity
 import com.example.smartshop.activity.ProductDetailActivity
 import com.example.smartshop.databinding.HistoryProductItemLayoutBinding
 import com.example.smartshop.model.ProductDetailModel
-import com.example.smartshop.model.SearchModel
+import com.example.smartshop.model.TopProductModel
 import com.example.smartshop.utils.Constants
 
-class HistoryProductAdapter(var items: List<SearchModel>): RecyclerView.Adapter<HistoryProductAdapter.ItemHolder>() {
+class HistoryProductAdapter(var items: List<TopProductModel>): RecyclerView.Adapter<HistoryProductAdapter.ItemHolder>() {
     inner class ItemHolder(val binding: HistoryProductItemLayoutBinding): RecyclerView.ViewHolder(binding.root)
-    fun setFilteredList(searchProduct: List<SearchModel>){
+    fun setFilteredList(searchProduct: List<TopProductModel>){
         items = searchProduct
         notifyDataSetChanged()
     }

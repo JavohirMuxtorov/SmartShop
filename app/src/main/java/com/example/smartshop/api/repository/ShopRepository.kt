@@ -129,4 +129,64 @@ class ShopRepository {
                 })
         )
     }
+
+    fun getProductsByIds(ids: List<Int>, error: MutableLiveData<String>, progress: MutableLiveData<Boolean>, success: MutableLiveData<List<TopProductModel>>){
+        progress.value = true
+        compositeDisposable.add(
+            NetworkManager.getApiService().getProductsByIds(GetProductsByIdsRequest(ids))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<TopProductModel>>>(){
+
+                    override fun onComplete() {
+                    }
+                    override fun onNext(t: BaseResponse<List<TopProductModel>>) {
+                        progress.value = false
+                        if (t.success){
+                            success.value = t.data
+                        }else{
+                            error.value = t.message
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.value = e.localizedMessage
+                        progress.value = false
+                    }
+
+
+                })
+        )
+    }
+    fun getProductsByIdsTop(ids: List<Int>, error: MutableLiveData<String>, progress: MutableLiveData<Boolean>, success: MutableLiveData<List<TopProductModel>>){
+        progress.value = true
+        compositeDisposable.add(
+            NetworkManager.getApiService().getProductsByIds(GetProductsByIdsRequest(ids))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<TopProductModel>>>(){
+
+                    override fun onComplete() {
+                    }
+                    override fun onNext(t: BaseResponse<List<TopProductModel>>) {
+                        progress.value = false
+                        if (t.success){
+                            success.value = t.data
+                        }else{
+                            error.value = t.message
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.value = e.localizedMessage
+                        progress.value = false
+                    }
+
+
+                })
+        )
+    }
 }
+
+
+

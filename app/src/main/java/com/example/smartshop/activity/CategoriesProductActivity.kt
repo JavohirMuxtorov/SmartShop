@@ -46,13 +46,4 @@ class CategoriesProductActivity : AppCompatActivity(),ProductAdapter.OnItemClick
         fragment.show(supportFragmentManager,ProductDetailFragment.TAG)
 
     }
-
-//    override fun onItemClick(position: Int, items: List<ProductModel>) {
-//        val fragment = ProductDetailFragment.newInstance()
-//        val bundle = Bundle()
-//        bundle.putParcelable("product",items[position])
-//        val item2 =fragment.tag
-//        item2.plus(bundle)
-//        fragment.show(supportFragmentManager,fragment.tag)
-//    }
 }

@@ -100,5 +100,9 @@
     <item name="android:textColor">#009688</item>
 </style>
 
+    <style name="tv">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">#fff</item>
+    </style>
 
 </resources>

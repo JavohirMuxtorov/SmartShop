@@ -32,5 +32,17 @@
     <string name="kirish_paroli_off">Kirish paroli(o\'chiq)</string>
     <string name="kirish_paroli_on">Kirish paroli(yoniq)</string>
     <string name="delete">Delete</string>
-
+    <string name="manba">Resources used in the program</string>
+    <string name="en_uz_ru">en</string>
+    <string name="dasturHaqida">About the program</string>
+    <string name="savollar">Frequently Asked Questions</string>
+    <string name="maxfiylik">Privacy Policy</string>
+    <string name="qoidalar">Product purchase rules</string>
+    <string name="communityAPP">Support center</string>
+    <string name="github">Github</string>
+    <string name="telegram">Telegram</string>
+    <string name="savol1">How do I purchase the product?</string>
+    <string name="savol2">How long does it take for the product to arrive?</string>
+    <string name="savol3">What to do if the purchased Product does not arrive?</string>
+    <string name="savol4">Other Questions</string>
 </resources>

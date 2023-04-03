@@ -73,21 +73,26 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/language" />
-
-            <TextView
+            <FrameLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textStyle="normal"
-                android:textSize="16sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/language_eng"
-                android:id="@+id/tvSpinner"/>
-            <Spinner
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:spinnerMode="dialog"
-                android:id="@+id/spinner"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/language_eng"
+                    android:id="@+id/tvSpinner"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:id="@+id/spinner"
+                    />
+            </FrameLayout>
 
         </LinearLayout>
         <View

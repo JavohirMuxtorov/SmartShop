@@ -7,12 +7,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.smartshop.MainActivity
 import com.example.smartshop.activity.*
+import com.example.smartshop.model.HistoryModel
 import com.example.smartshop.model.UserModel
 import com.example.smartshop.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class Firebase {
 
     private val fireStore = FirebaseFirestore.getInstance()
@@ -101,7 +103,4 @@ class Firebase {
         }
         return currentUserID
     }
-
-
-
 }

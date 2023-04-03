@@ -2,21 +2,20 @@ package com.example.smartshop.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import com.bumptech.glide.Glide
-import com.example.smartshop.databinding.ActivityProductDetailBinding
+import com.example.smartshop.R
 import com.example.smartshop.databinding.ActivityProductDetailHistoryBinding
 import com.example.smartshop.model.ProductDetailModel
-import com.example.smartshop.model.SearchModel
 import com.example.smartshop.model.TopProductModel
+import com.example.smartshop.utils.PrefUtils
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrInterface
 
 class HistoryProductDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityProductDetailHistoryBinding
-    lateinit var item: SearchModel
+    lateinit var item: TopProductModel
     var productDetail = listOf(
         ProductDetailModel(
             1, "Смартфон iPhone 12 64GB Blue, White, Black, Green, Red", "9 434 000",
@@ -311,7 +310,7 @@ class HistoryProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        item = intent.getSerializableExtra("item") as SearchModel
+        item = intent.getSerializableExtra("item") as TopProductModel
         val items = productDetail[item.id - 1]
         binding.name.text = items.name
         slidr = Slidr.attach(this)
@@ -324,6 +323,21 @@ class HistoryProductDetailActivity : AppCompatActivity() {
             Glide.with(this)
                 .load("https://firebasestorage.googleapis.com/v0/b/smart-shop-77630.appspot.com/o/${items.image[position]}")
                 .into(imageView)
+        }
+
+        binding.imgFavorite.setOnClickListener {
+            PrefUtils.setFavorite(item)
+
+            if (PrefUtils.checkFavorites(item)){
+                binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }else{
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
+            }
+        }
+        if (PrefUtils.checkFavorites(item)){
+            binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            binding.imgFavorite.setImageResource(R.drawable.favorite)
         }
 
 
