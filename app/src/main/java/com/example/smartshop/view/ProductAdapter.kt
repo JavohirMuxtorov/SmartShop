@@ -38,9 +38,8 @@ class ProductAdapter(val items: List<ProductModel>, val onItemClickListener: OnI
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
-        holder.binding.tvPBCName.text = item.name
-        holder.binding.tvPBCComment.text = item.name
-        holder.binding.tvPBCPrice.text = item.price
+        holder.binding.tvName.text = item.name
+        holder.binding.tvPrice.text = item.price
         Glide.with(holder.itemView.context).load(Constants.HOST_IMAGE+item.image).into(holder.binding.imgProduct)
 
     }

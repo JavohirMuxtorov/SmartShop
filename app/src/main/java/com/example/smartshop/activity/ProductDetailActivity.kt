@@ -3,8 +3,10 @@ package com.example.smartshop.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.smartshop.R
 import com.example.smartshop.databinding.ActivityProductDetailBinding
@@ -311,8 +313,27 @@ class ProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        binding.imgFavorite.setOnClickListener{
+            PrefUtils.setFavorite(item)
+            if (PrefUtils.checkFavorites(item)){
+                binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+
+            }else{
+                binding.imgFavorite.setImageResource(R.drawable.favorite)
+            }
+        }
+
         item = intent.getSerializableExtra("topProduct") as TopProductModel
         val items = productDetail[item.id - 1]
+
+        val marquee1 = binding.tvMarquea
+        marquee1.text = items.name
+        marquee1.setSingleLine()
+        marquee1.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee1.marqueeRepeatLimit = -1
+        marquee1.isSelected = true
         binding.name.text = items.name
         slidr = Slidr.attach(this)
         slidr.unlock()
@@ -325,25 +346,21 @@ class ProductDetailActivity : AppCompatActivity() {
                 .load("https://firebasestorage.googleapis.com/v0/b/smart-shop-77630.appspot.com/o/${items.image[position]}")
                 .into(imageView)
         }
-        binding.addToCart.setOnClickListener {
-            PrefUtils.setCart(item)
+        if (PrefUtils.getCartCount(item)>0){
             binding.addToCart.visibility = View.GONE
-        }
-        binding.imgFavorite.setOnClickListener {
-            PrefUtils.setFavorite(item)
-
-            if (PrefUtils.checkFavorites(item)){
-                binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }else{
-                binding.imgFavorite.setImageResource(R.drawable.favorite)
-            }
         }
         if (PrefUtils.checkFavorites(item)){
             binding.imgFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+
         }else{
             binding.imgFavorite.setImageResource(R.drawable.favorite)
         }
-
+        binding.addToCart.setOnClickListener {
+            item.cartCount = 1
+            PrefUtils.setCart(item)
+            Toast.makeText(this,"Product added to Cart",Toast.LENGTH_LONG).show()
+            finish()
+        }
 
     }
 }

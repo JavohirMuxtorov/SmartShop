@@ -15,6 +15,7 @@ object Constants {
     const val PICK_IMAGE_REQUEST_CODE = 2
     var startPassword: String = ""
     const val MY_PASSCODE:Int = 7
+    const val EXTRA_DATA = "extra_data"
     const val BASE_URL = "http://osonsavdo.devapp.uz/api/"
     const val HOST_IMAGE = "http://osonsavdo.devapp.uz/images/"
     fun getFileExtensions(activity: Activity, uri: Uri?): String? {

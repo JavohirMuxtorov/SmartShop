@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#222222"
+    tools:context=".activity.PatternLockActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingClass">
+    <TextClock
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold|italic"
+        android:text="Please enter your password"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <com.itsxtt.patternlock.PatternLockView
+        android:id="@+id/pattern_lock_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:plv_columnCount="3"
+        app:plv_regularDotRadiusRatio="0.1"
+        app:plv_selectedDotRadiusRatio="0.2"
+        app:plv_errorDotRadiusRatio="0.2"
+        android:layout_marginBottom="26dp"
+        android:padding="30dp"
+        app:plv_rowCount="3" />
+</LinearLayout>
+</FrameLayout>

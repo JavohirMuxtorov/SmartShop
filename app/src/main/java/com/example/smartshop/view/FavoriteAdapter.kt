@@ -24,7 +24,6 @@ class FavoriteAdapter(val items: List<TopProductModel>): RecyclerView.Adapter<Fa
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProductDetailActivity::class.java)
-//            intent.("topProduct",item)
             intent.putExtra("topProduct",item)
             holder.itemView.context.startActivity(intent)
         }

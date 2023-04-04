@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.smartshop.MainActivity
@@ -33,7 +34,15 @@ class AboutDetailActivity : AppCompatActivity() {
         binding.llBack.setOnClickListener {
             finish()
         }
-        binding.text.setText(bundle!!.getCharSequence("child"))
+
+        val marquee = binding.text
+        marquee.setText(bundle!!.getCharSequence("child"))
+        marquee.setSingleLine()
+        marquee.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee.marqueeRepeatLimit = -1
+        marquee.isSelected = true
+
+
         readPassword()
         if (language == "en"){
             if (binding.text.text == "Privacy Policy"){

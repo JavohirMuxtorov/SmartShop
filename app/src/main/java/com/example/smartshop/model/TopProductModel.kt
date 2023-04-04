@@ -9,5 +9,5 @@ data class TopProductModel(
     val name: String,
     val price: String,
     val image: String,
-    var cartCount: Int = 1,
+    var cartCount: Int = 1
 ): Serializable

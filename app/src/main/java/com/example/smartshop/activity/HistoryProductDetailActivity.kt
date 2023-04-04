@@ -3,6 +3,7 @@ package com.example.smartshop.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import com.bumptech.glide.Glide
 import com.example.smartshop.R
@@ -312,7 +313,14 @@ class HistoryProductDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         item = intent.getSerializableExtra("item") as TopProductModel
         val items = productDetail[item.id - 1]
-        binding.name.text = items.name
+
+        val marquee1 = binding.name
+        marquee1.text = items.name
+        marquee1.setSingleLine()
+        marquee1.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee1.marqueeRepeatLimit = -1
+        marquee1.isSelected = true
+
         slidr = Slidr.attach(this)
         slidr.unlock()
         binding.comment.text = Html.fromHtml(items.comment)

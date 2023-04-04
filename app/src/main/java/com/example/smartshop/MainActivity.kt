@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -55,7 +56,7 @@ class MainActivity : BaseActivity(), HistoryAdapter.OnItemClickListener {
     private var start: String = Constants.startPassword
     private var night: String = ""
     var nl: String = ""
-    var strData: String =""
+    var strData: String = ""
     val homeFragment = HomeFragment.newInstance()
     val favoriteFragment = FavoriteFragment.newInstance()
     val cartFragment = CartFragment.newInstance()
@@ -65,18 +66,21 @@ class MainActivity : BaseActivity(), HistoryAdapter.OnItemClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var selectLanguage = resources.getString(R.string.lang)
-        var language = arrayOf(selectLanguage,"ENGLISH", "O'ZBEK", "РУССКИЙ")
+        var language = arrayOf(selectLanguage, "ENGLISH", "O'ZBEK", "РУССКИЙ")
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.navLayout.settings.setOnClickListener {
-            startActivityForResult(Intent(this, SettingsActivity::class.java), Constants.MY_PROFILE_REQUEST_CODE)
+            startActivityForResult(
+                Intent(this, SettingsActivity::class.java),
+                Constants.MY_PROFILE_REQUEST_CODE
+            )
         }
         binding.navLayout.aboutApp.setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java))
         }
         readPassword()
-        if (start == "true"){
+        if (start == "true") {
             binding.imgLock.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.imgLock.visibility = View.GONE
         }
         binding.llLock.setOnClickListener {
@@ -108,34 +112,52 @@ class MainActivity : BaseActivity(), HistoryAdapter.OnItemClickListener {
             binding.ll.visibility = View.VISIBLE
             binding.llSearchView.visibility = View.GONE
         }
-        if (binding.languagetv.text == "uz"){
+        if (binding.languagetv.text == "uz") {
             saveLanguage()
-        }else if (binding.languagetv.text == "en"){
+        } else if (binding.languagetv.text == "en") {
             saveLanguage()
-        }else if (binding.languagetv.text == "ru"){
+        } else if (binding.languagetv.text == "ru") {
             saveLanguage()
         }
         val intentAD = intent.getStringExtra("community")
-        if (intentAD == "communityFragment"){
+        if (intentAD == "communityFragment") {
             supportFragmentManager.beginTransaction()
                 .add(R.id.flContainer, communityFragment, communityFragment.tag).commit()
-        }else {
+            binding.tvTitle.text = resources.getString(R.string.map)
+            binding.menu.visibility = View.GONE
+            binding.search.visibility = View.GONE
+        } else {
             supportFragmentManager.beginTransaction()
                 .add(R.id.flContainer, homeFragment, homeFragment.tag).commit()
+            binding.tvTitle.text = resources.getString(R.string.home)
+            binding.menu.visibility = View.VISIBLE
+            binding.search.visibility = View.VISIBLE
         }
         binding.bottomNavigationView.setOnItemSelectedListener {
             if (it.itemId == R.id.home) {
                 supportFragmentManager.beginTransaction().replace(R.id.flContainer, homeFragment)
                     .commit()
+                binding.tvTitle.text = resources.getString(R.string.home)
+                binding.menu.visibility = View.VISIBLE
+                binding.search.visibility = View.VISIBLE
             } else if (it.itemId == R.id.favorite) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.flContainer, favoriteFragment).commit()
+                binding.tvTitle.text = resources.getString(R.string.favorite)
+                binding.menu.visibility = View.GONE
+                binding.search.visibility = View.GONE
             } else if (it.itemId == R.id.cart) {
                 supportFragmentManager.beginTransaction().replace(R.id.flContainer, cartFragment)
                     .commit()
+                binding.tvTitle.text = resources.getString(R.string.cart)
+                binding.menu.visibility = View.GONE
+                binding.search.visibility = View.GONE
             } else if (it.itemId == R.id.map) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.flContainer, communityFragment).commit()
+                binding.tvTitle.text = resources.getString(R.string.map)
+                binding.menu.visibility = View.GONE
+                binding.search.visibility = View.GONE
             }
             return@setOnItemSelectedListener true
         }
@@ -163,10 +185,10 @@ class MainActivity : BaseActivity(), HistoryAdapter.OnItemClickListener {
             }
             editor?.apply()
         }
-        if (binding.navLayout.themeSwitch.isChecked == true){
+        if (binding.navLayout.themeSwitch.isChecked == true) {
             binding.navLayout.tvTheme.text = resources.getString(R.string.theme_dark)
             binding.nightTv.text = "dark"
-        }else if (binding.navLayout.themeSwitch.isChecked == false){
+        } else if (binding.navLayout.themeSwitch.isChecked == false) {
             binding.navLayout.tvTheme.text = resources.getString(R.string.theme_light)
             binding.nightTv.text = "light"
         }
@@ -193,10 +215,10 @@ class MainActivity : BaseActivity(), HistoryAdapter.OnItemClickListener {
             }
         })
         val bindings = binding.navLayout
-bindings.shareApp.setOnClickListener {
-    shareApp()
-}
-        val adapter = CustomSpinnerAdapter(this,language)
+        bindings.shareApp.setOnClickListener {
+            shareApp()
+        }
+        val adapter = CustomSpinnerAdapter(this, language)
         bindings.spinner.adapter = adapter
         bindings.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -231,42 +253,58 @@ bindings.shareApp.setOnClickListener {
         }
     }
 
-    private fun shareApp(){
-        val appMSG: String = "Hello, I am using the Smart Shop application, I recommend you to download it from this link: " +
-                "https://play.google.com/store/apps/details?id=com.example.smartshop"
+    private fun shareApp() {
+        val appMSG: String =
+            "Hello, I am using the Smart Shop application, I recommend you to download it from this link: " +
+                    "https://play.google.com/store/apps/details?id=com.example.smartshop"
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
         intent.putExtra(Intent.EXTRA_TEXT, appMSG)
         intent.type = "text/plain"
         startActivity(intent)
     }
-    private fun saveLanguage(){
+
+    private fun saveLanguage() {
         try {
-            val fileSave = File(cacheDir,"language")
+            val fileSave = File(cacheDir, "language")
             val fileOutputStream = FileOutputStream(fileSave)
             strData = binding.languagetv.text.toString()
             fileOutputStream.write(strData.toByteArray())
             fileOutputStream.close()
-        }catch (exp: IOException){
+        } catch (exp: IOException) {
             exp.printStackTrace()
         }
     }
-    private fun saveLight(){
+
+    private fun saveLight() {
         try {
-            val fileSave = File(cacheDir,"night")
+            val fileSave = File(cacheDir, "night")
             val fileOutputStream = FileOutputStream(fileSave)
             strData = binding.nightTv.text.toString()
             fileOutputStream.write(strData.toByteArray())
             fileOutputStream.close()
-        }catch (exp: IOException){
+        } catch (exp: IOException) {
             exp.printStackTrace()
         }
     }
 
     fun userProfile(user: UserModel) {
-        Picasso.get().load(user.img).placeholder(R.drawable.user).into(binding.navLayout.ivUserImage)
-        binding.navLayout.tvUserName.text = user.name
-        binding.navLayout.tvEmail.text = user.email
+        Picasso.get().load(user.img).placeholder(R.drawable.user)
+            .into(binding.navLayout.ivUserImage)
+
+        val marquee1 = binding.navLayout.tvUserName
+        marquee1.text = user.name
+        marquee1.setSingleLine()
+        marquee1.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee1.marqueeRepeatLimit = - 1
+        marquee1.isSelected = true
+
+        val marquee2 = binding.navLayout.tvEmail
+        marquee2.text = user.email
+        marquee2.setSingleLine()
+        marquee2.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee2.marqueeRepeatLimit = - 1
+        marquee2.isSelected = true
     }
 
     override fun attachBaseContext(newBase: Context?) {
@@ -276,20 +314,21 @@ bindings.shareApp.setOnClickListener {
     private fun loadData() {
         viewModel.getHistoryProducts()
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == Constants.MY_PROFILE_REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.MY_PROFILE_REQUEST_CODE) {
             Firebase().userDetail(this)
             val data = data?.getStringExtra("result")
             start = data.toString()
-        }else{
-            Log.e("Cancelled","Cancelled")
+        } else {
+            Log.e("Cancelled", "Cancelled")
         }
     }
 
-    private fun readPassword(){
+    private fun readPassword() {
         try {
-            val fileRead = File(cacheDir,"open")
+            val fileRead = File(cacheDir, "open")
             val fileInputStream = FileInputStream(fileRead)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
@@ -298,13 +337,13 @@ bindings.shareApp.setOnClickListener {
             while (run {
                     line = bufferedReader.readLine()
                     line
-                } !=null){
+                } != null) {
                 stringBuilder.append(line)
             }
             fileInputStream.close()
             start = stringBuilder.toString()
 
-        }catch (exp: IOException){
+        } catch (exp: IOException) {
             exp.printStackTrace()
         }
     }
@@ -562,7 +601,14 @@ bindings.shareApp.setOnClickListener {
                 "1614193362.jpg"
             )
         )
-        mSearchProduct.add(TopProductModel(29, "Мышью 2Е MF209 WL Black", "117 000", "1614193414.jpg"))
+        mSearchProduct.add(
+            TopProductModel(
+                29,
+                "Мышью 2Е MF209 WL Black",
+                "117 000",
+                "1614193414.jpg"
+            )
+        )
         mSearchProduct.add(
             TopProductModel(
                 30,

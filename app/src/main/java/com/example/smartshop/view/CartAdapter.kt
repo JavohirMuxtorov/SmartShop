@@ -17,15 +17,27 @@ class CartAdapter( val items:List<TopProductModel>):RecyclerView.Adapter<CartAda
     override fun getItemCount(): Int {
         return items.count()
     }
-
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = items[position]
 
         holder.binding.tvPrice.text = item.price
         holder.binding.tvName.text = item.name
         Glide.with(holder.itemView).load(Constants.HOST_IMAGE + item.image).into(holder.binding.imgProduct)
-
-        holder.binding.tvCount.text = item.cartCount.toString()
+        var count = item.cartCount+1
+        holder.binding.tvCount.text = count.toString()
+        item.cartCount = count
+        holder.binding.increment.setOnClickListener {
+            count++
+            item.cartCount = count
+            holder.binding.tvCount.text = count.toString()
+        }
+        holder.binding.decrement.setOnClickListener {
+            if (count >1){
+                count--
+                item.cartCount = count
+                holder.binding.tvCount.text = count.toString()
+            }
+        }
     }
 
 }

@@ -45,4 +45,5 @@
     <string name="savol2">How long does it take for the product to arrive?</string>
     <string name="savol3">What to do if the purchased Product does not arrive?</string>
     <string name="savol4">Other Questions</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

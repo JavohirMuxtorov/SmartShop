@@ -27,7 +27,7 @@ open class BaseActivity : AppCompatActivity() {
 
 
     fun showProgressDialog() {
-        mProgressDialog = Dialog(this)
+        mProgressDialog = Dialog(this, R.style.BottomSheetDialog)
         mProgressDialog.setContentView(R.layout.dialog_progress)
         mProgressDialog.setCancelable(true)
         mProgressDialog.show()

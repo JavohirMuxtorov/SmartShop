@@ -18,8 +18,8 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey"
                 app:cardCornerRadius="12dp"
@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/imgProduct"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/favorite"
@@ -78,19 +78,13 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/imgMinus"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:backgroundTint="@color/colorAccent"
-                        app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/minus"
-                            app:tint="@color/white" />
-                    </androidx.cardview.widget.CardView>
+                            android:id="@+id/decrement"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_baseline_remove_circle_24"
+                            app:tint="@null" />
 
                     <TextView
                         android:id="@+id/tvCount"
@@ -102,19 +96,12 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/imgPlus"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:backgroundTint="@color/colorAccent"
-                        app:cardCornerRadius="10dp">
-
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/delete_dialog_shape"
-                            app:tint="@color/white" />
-                    </androidx.cardview.widget.CardView>
+                            android:id="@+id/increment"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_baseline_add_circle_24"
+                            app:tint="@null" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -76,9 +76,7 @@
         <item name="tint">@color/white</item>
     </style>
     <style name="backgroundScreen">
-        <item name="android:background">@drawable/background_light_image</item>
-    </style>
-    <style name="backgroundScreen2">
+        <item name="android:angle">180</item>
         <item name="android:background">@drawable/background_light_image</item>
     </style>
     <style name="backText">
@@ -104,5 +102,8 @@
     <style name="tv">
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textColor">#000</item>
+    </style>
+    <style name="toolbar">
+        <item name="android:background">@drawable/toolbar_shape_light</item>
     </style>
 </resources>

@@ -15,8 +15,11 @@ import com.example.smartshop.R
 import com.example.smartshop.activity.MakeOrderActivity
 import com.example.smartshop.databinding.FragmentCartBinding
 import com.example.smartshop.databinding.FragmentFavoriteBinding
+import com.example.smartshop.model.TopProductModel
+import com.example.smartshop.utils.Constants
 import com.example.smartshop.utils.PrefUtils
 import com.example.smartshop.view.CartAdapter
+import java.io.Serializable
 
 class CartFragment : Fragment() {
     lateinit var binding: FragmentCartBinding
@@ -57,7 +60,9 @@ class CartFragment : Fragment() {
             loadData()
         }
         binding.btnMakeOrder.setOnClickListener {
-            startActivity(Intent(requireActivity(), MakeOrderActivity::class.java))
+            val intent = Intent(requireActivity(), MakeOrderActivity::class.java)
+            intent.putExtra(Constants.EXTRA_DATA, (viewModel.topProductData.value ?: emptyList<TopProductModel>()) as Serializable)
+            startActivity(intent)
         }
         loadData()
     }

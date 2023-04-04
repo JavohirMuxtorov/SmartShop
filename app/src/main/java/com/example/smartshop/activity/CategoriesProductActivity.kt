@@ -3,6 +3,7 @@ package com.example.smartshop.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -34,7 +35,12 @@ class CategoriesProductActivity : AppCompatActivity(),ProductAdapter.OnItemClick
         binding.back.setOnClickListener {
             finish()
         }
-        binding.tvTitle.text = item.title
+        val marquee = binding.tvTitle
+        marquee.text = item.title
+        marquee.setSingleLine()
+        marquee.ellipsize = TextUtils.TruncateAt.MARQUEE
+        marquee.marqueeRepeatLimit = -1
+        marquee.isSelected = true
         loadData()
     }
     private fun loadData(){
